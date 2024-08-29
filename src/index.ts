@@ -67,7 +67,14 @@ async function onUpdate (update) {
  * https://core.telegram.org/bots/api#message
  */
 function onMessage (message) {
-  return sendPlainText(message.chat.id, 'Echo:\n' + message.text)
+  console.log(message)
+  if (message.text.startsWith('/start')) {
+    return sendPlainText(message.chat.id, 'Hello and welcome to expenses tracker.\nHere you can log your expenses from incoming and outgoing. Please register your self with /register command to enable your telegram account to log your expenses.')
+  } else if (message.text.startsWith('/help')) {
+  	return sendPlainText(message.chat.id, 'This app purposes is to record every expenses from incoming/outgoing.\n Besides that we also want to provide this expenses into Balance Sheet and Cash Flow and you can view it here in this chat or even in our app in the neear future.')
+  } else {
+  	return sendPlainText(message.chat.id, 'Echo : \n' + message.text)
+  }
 }
 
 /**
